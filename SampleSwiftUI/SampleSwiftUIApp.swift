@@ -11,6 +11,9 @@ import SwiftUI
 struct SampleSwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
+			NavigationView{
+				HomeView().navigationBarHidden(true)
+			}
             ContentView()
         }
     }
