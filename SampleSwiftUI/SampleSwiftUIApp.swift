@@ -9,12 +9,16 @@ import SwiftUI
 
 @main
 struct SampleSwiftUIApp: App {
+	
+	@StateObject var vm = HomeViewModel()
+	
     var body: some Scene {
         WindowGroup {
 			NavigationView{
 				HomeView().navigationBarHidden(true)
 			}
-            ContentView()
+			.environmentObject(vm)
+            //ContentView()
         }
     }
 }
