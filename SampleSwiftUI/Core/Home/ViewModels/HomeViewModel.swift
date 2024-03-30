@@ -15,7 +15,9 @@ class HomeViewModel: ObservableObject {
 	@Published var allCoins: [CoinModel] = []
 	@Published var portfolioCoins: [CoinModel] = []
 	
+	
 	private var cancellables = Set<AnyCancellable>()
+	@Published var searchText = ""
 	init() {
 		addSubscribers()
 //		DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
