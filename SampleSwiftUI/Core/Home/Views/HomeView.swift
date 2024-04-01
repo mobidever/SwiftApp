@@ -11,10 +11,15 @@ struct HomeView: View {
 	
 	@EnvironmentObject private var vm: HomeViewModel
 	@State private var showPortfolio : Bool = false
+	@State private var showPortfolioView: Bool = false // to toggle portfolio edit sheet
 	
     var body: some View {
 		ZStack{
-			Color.theme.background.ignoresSafeArea()
+			Color.theme.background
+				.ignoresSafeArea()
+				.sheet(isPresented: $showPortfolioView, content: {
+					PortFolioView().environmentObject(vm)
+				})
 			
 			VStack (content: {
 				homeHeader
@@ -80,6 +85,12 @@ extension HomeView {
 		
 		HStack{
 			CircleButtonView(iconName: showPortfolio ? "plus" : "info")
+				.animation(.none)
+				.onTapGesture {
+					if showPortfolio {
+						showPortfolioView.toggle()
+					}
+				}
 				.background{
 					CircleButtonAnimationView(animate: $showPortfolio)
 				}
